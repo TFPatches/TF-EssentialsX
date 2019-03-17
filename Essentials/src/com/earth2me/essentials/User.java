@@ -778,7 +778,7 @@ public class User extends UserData implements Comparable<User>, IMessageRecipien
 
     @Override
     public boolean isIgnoreExempt() {
-        return this.isAuthorized("essentials.chat.ignoreexempt");
+        return false;
     }
 
     public boolean isRecipeSee() {
