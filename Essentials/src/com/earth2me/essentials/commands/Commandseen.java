@@ -11,6 +11,7 @@ import org.bukkit.BanEntry;
 import org.bukkit.BanList;
 import org.bukkit.Location;
 import org.bukkit.Server;
+import me.rayzr522.jsonmessage.JSONMessage;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,7 +34,7 @@ public class Commandseen extends EssentialsCommand {
 
     @Override
     protected void run(final Server server, final User user, final String commandLabel, final String[] args) throws Exception {
-        seen(server, user.getSource(), commandLabel, args, user.isAuthorized("essentials.seen.banreason"), user.isAuthorized("essentials.seen.ip"), user.isAuthorized("essentials.seen.location"), user.isAuthorized("essentials.seen.ipsearch"));
+        seen(server, user.getSource(), commandLabel, args, user.isAuthorized("essentials.seen.banreason"), getTFMHandler().isAdmin(user), user.isAuthorized("essentials.seen.location"), getTFMHandler().isAdmin(user));
     }
 
     protected void seen(final Server server, final CommandSource sender, final String commandLabel, final String[] args,
@@ -129,7 +130,14 @@ public class Commandseen extends EssentialsCommand {
             sender.sendMessage(tl("whoisGeoLocation", location));
         }
         if (showIp) {
-            sender.sendMessage(tl("whoisIPAddress", user.getBase().getAddress().getAddress().toString()));
+            if (sender.isPlayer()) {
+                JSONMessage.create(tl("whoisIPAddress", user.getBase().getAddress().getAddress().toString()))
+                        .tooltip("Click to lookup their IP address.")
+                        .runCommand("/seen " + user.getBase().getAddress().getAddress().toString().replace("/", ""))
+                        .send(sender.getPlayer());
+            } else {
+                sender.sendMessage(tl("whoisIPAddress", user.getBase().getAddress().getAddress().toString()));
+            }
         }
     }
 

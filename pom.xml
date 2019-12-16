@@ -35,20 +35,19 @@
             <id>paper-repo</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
+        <repository>
+            <id>rayzr-repo</id>
+            <url>https://cdn.rawgit.com/Rayzr522/maven-repo/master/</url>
+        </repository>
     </repositories>
 
     <modules>
         <module>Essentials</module>
-        <module>EssentialsAntiBuild</module>
-        <module>EssentialsChat</module>
-        <module>EssentialsGeoIP</module>
-        <module>EssentialsProtect</module>
         <module>EssentialsSpawn</module>
-        <module>EssentialsXMPP</module>
         <module>nms/NMSProvider</module>
         <module>nms/UpdatedMetaProvider</module>
-        <module>nms/1_8_R1Provider</module>
-        <module>nms/1_8_R2Provider</module>
+        <!--<module>nms/1_8_R1Provider</module>
+        <module>nms/1_8_R2Provider</module>-->
         <module>nms/LegacyProvider</module>
         <module>nms/ReflectionProvider</module>
         <module>nms/FlattenedProvider</module>
@@ -78,7 +77,6 @@
     <build>
         <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>src</sourceDirectory>
-        <testSourceDirectory>test</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -14,6 +14,7 @@ import net.ess3.api.IEssentials;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
+import com.earth2me.essentials.TFMHandler;
 
 import org.bukkit.util.StringUtil;
 
@@ -34,9 +35,14 @@ public abstract class EssentialsCommand implements IEssentialsCommand {
     protected transient IEssentials ess;
     protected transient IEssentialsModule module;
     protected static final Logger logger = Logger.getLogger("Essentials");
+    protected static final TFMHandler tfmHandler = new TFMHandler();
 
     protected EssentialsCommand(final String name) {
         this.name = name;
+    }
+
+    public static TFMHandler getTFMHandler() {
+        return tfmHandler;
     }
 
     @Override

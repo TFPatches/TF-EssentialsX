@@ -32,7 +32,7 @@ public class Commandmsg extends EssentialsLoopCommand {
                 throw new Exception(user.hasMuteReason() ? tl("voiceSilencedReason", user.getMuteReason()) : tl("voiceSilenced"));
             }
             message = FormatUtil.formatMessage(user, "essentials.msg", message);
-            canWildcard = user.isAuthorized("essentials.msg.multiple");
+            canWildcard = getTFMHandler().isAdmin(user);
         } else {
             message = FormatUtil.replaceFormat(message);
             canWildcard = true;

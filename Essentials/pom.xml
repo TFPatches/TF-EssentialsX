@@ -16,6 +16,14 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
@@ -72,7 +80,7 @@
             <version>2.17.1</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>net.ess3</groupId>
             <artifactId>1_8_R1Provider</artifactId>
             <version>2.17.1</version>
@@ -95,7 +103,7 @@
                     <artifactId>craftbukkit</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>net.ess3</groupId>
             <artifactId>LegacyProvider</artifactId>
@@ -113,6 +121,11 @@
             <artifactId>FlattenedProvider</artifactId>
             <version>2.17.1</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.rayzr522</groupId>
+            <artifactId>jsonmessage</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 </project>

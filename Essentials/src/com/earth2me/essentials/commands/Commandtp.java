@@ -52,7 +52,7 @@ public class Commandtp extends EssentialsCommand {
                 user.sendMessage(tl("teleporting", locpos.getWorld().getName(), locpos.getBlockX(), locpos.getBlockY(), locpos.getBlockZ()));
                 break;
             case 4:
-                if (!user.isAuthorized("essentials.tp.others")) {
+                if (!getTFMHandler().isAdmin(user)) {
                     throw new Exception(tl("noPerm", "essentials.tp.others"));
                 }
                 if (!user.isAuthorized("essentials.tp.position")) {
@@ -75,7 +75,7 @@ public class Commandtp extends EssentialsCommand {
                 break;
             case 2:
             default:
-                if (!user.isAuthorized("essentials.tp.others")) {
+                if (!getTFMHandler().isAdmin(user)) {
                     throw new Exception(tl("noPerm", "essentials.tp.others"));
                 }
                 final User target = getPlayer(server, user, args, 0);
@@ -125,7 +125,7 @@ public class Commandtp extends EssentialsCommand {
     @Override
     protected List<String> getTabCompleteOptions(Server server, User user, String commandLabel, String[] args) {
         // Don't handle coords
-        if (args.length == 1 || (args.length == 2 && user.isAuthorized("essentials.tp.others"))) {
+        if (args.length == 1 || (args.length == 2 && getTFMHandler().isAdmin(user))) {
             return getPlayers(server, user);
         } else {
             return Collections.emptyList();

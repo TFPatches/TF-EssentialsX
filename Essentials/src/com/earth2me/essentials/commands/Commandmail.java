@@ -78,7 +78,7 @@ public class Commandmail extends EssentialsCommand {
             return;
         }
         if (args.length > 1 && "sendall".equalsIgnoreCase(args[0])) {
-            if (!user.isAuthorized("essentials.mail.sendall")) {
+            if (!getTFMHandler().isAdmin(user)) {
                 throw new Exception(tl("noPerm", "essentials.mail.sendall"));
             }
             ess.runTaskAsynchronously(new SendAll(tl("mailFormat", user.getName(),
@@ -156,7 +156,7 @@ public class Commandmail extends EssentialsCommand {
             if (user.isAuthorized("essentials.mail.send")) {
                 options.add("send");
             }
-            if (user.isAuthorized("essentials.mail.sendall")) {
+            if (getTFMHandler().isAdmin(user)) {
                 options.add("sendall");
             }
             return options;
