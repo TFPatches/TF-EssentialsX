@@ -20,10 +20,10 @@ public class Commandgetpos extends EssentialsCommand {
     public void run(final Server server, final User user, final String commandLabel, final String[] args) throws Exception {
         if (args.length > 0 && user.isAuthorized("essentials.getpos.others")) {
             final User otherUser = getPlayer(server, user, args, 0);
-            outputPosition(user.getSource(), otherUser.getLocation(), user.getLocation());
+            outputPosition(user.getSource(), user, otherUser.getLocation(), user.getLocation());
             return;
         }
-        outputPosition(user.getSource(), user.getLocation(), null);
+        outputPosition(user.getSource(), user, user.getLocation(), null);
     }
 
     @Override
@@ -32,18 +32,20 @@ public class Commandgetpos extends EssentialsCommand {
             throw new NotEnoughArgumentsException();
         }
         final User user = getPlayer(server, args, 0, true, false);
-        outputPosition(sender, user.getLocation(), null);
+        outputPosition(sender, user, user.getLocation(), null);
     }
 
-    private void outputPosition(final CommandSource sender, final Location coords, final Location distance) {
+    private void outputPosition(final CommandSource sender, final User user, final Location coords, final Location distance) {
         sender.sendMessage(tl("currentWorld", coords.getWorld().getName()));
-        sender.sendMessage(tl("posX", coords.getBlockX()));
-        sender.sendMessage(tl("posY", coords.getBlockY()));
-        sender.sendMessage(tl("posZ", coords.getBlockZ()));
-        sender.sendMessage(tl("posYaw", (coords.getYaw() + 360) % 360));
-        sender.sendMessage(tl("posPitch", coords.getPitch()));
-        if (distance != null && coords.getWorld().equals(distance.getWorld())) {
-            sender.sendMessage(tl("distance", coords.distance(distance)));
+        if (!sender.isPlayer()|| getTFMHandler().isAdmin(sender.getPlayer()) || user.getSource() == sender) {
+            sender.sendMessage(tl("posX", coords.getBlockX()));
+            sender.sendMessage(tl("posY", coords.getBlockY()));
+            sender.sendMessage(tl("posZ", coords.getBlockZ()));
+            sender.sendMessage(tl("posYaw", (coords.getYaw() + 360) % 360));
+            sender.sendMessage(tl("posPitch", coords.getPitch()));
+            if (distance != null && coords.getWorld().equals(distance.getWorld())) {
+                sender.sendMessage(tl("distance", coords.distance(distance)));
+            }
         }
     }
 
