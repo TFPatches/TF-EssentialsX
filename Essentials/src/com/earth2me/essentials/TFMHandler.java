@@ -12,6 +12,7 @@ public class TFMHandler
 {
     private static Logger logger;
     private static Function<Player, Boolean> adminProvider;
+    private static Function<Player, Boolean> vanishProvider;
 
     public static void setLogger(Logger logger)
     {
@@ -61,10 +62,48 @@ public class TFMHandler
                 return false;
             }
 
-            adminProvider = (Function<Player, Boolean>)provider;
+            adminProvider = (Function<Player, Boolean>) provider;
         }
 
         return adminProvider.apply(player);
+    }
+
+    public boolean isVanished(User user)
+    {
+        return isVanished(user.getBase());
+    }
+
+    @SuppressWarnings({"unchecked", "ConstantConditions"})
+    public boolean isVanished(Player player)
+    {
+
+        if (vanishProvider == null)
+        {
+            final Plugin tfm = getTFM();
+            if (tfm == null)
+            {
+                return false;
+            }
+
+            Object provider = null;
+            for (RegisteredServiceProvider<?> serv : Bukkit.getServicesManager().getRegistrations(tfm))
+            {
+                if (Function.class.isAssignableFrom(serv.getService()))
+                {
+                    provider = serv.getProvider();
+                }
+            }
+
+            if (provider == null)
+            {
+                warning("Could not obtain vanish service provider!");
+                return false;
+            }
+
+            vanishProvider = (Function<Player, Boolean>) provider;
+        }
+
+        return vanishProvider.apply(player);
     }
 
     public static void warning(String warning)

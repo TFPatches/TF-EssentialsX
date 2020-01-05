@@ -106,6 +106,10 @@ public class Commandnear extends EssentialsCommand {
                 output.append(", ");
             }
             User nearbyPlayer = nearbyPlayers.poll();
+            if (getTFMHandler().isVanished(user))
+            {
+                continue;
+            }
             output.append(nearbyPlayer.getDisplayName()).append("§f(§4").append((long) nearbyPlayer.getLocation().distance(loc)).append("m§f)");
         }
 
