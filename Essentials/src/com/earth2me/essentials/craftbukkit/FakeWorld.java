@@ -449,6 +449,26 @@ public class FakeWorld implements World {
     }
 
     @Override
+    public int getHighestBlockYAt(int i, int i1, HeightMap heightMap) {
+        return 0;
+    }
+
+    @Override
+    public int getHighestBlockYAt(Location location, HeightMap heightMap) {
+        return 0;
+    }
+
+    @Override
+    public Block getHighestBlockAt(int i, int i1, HeightMap heightMap) {
+        return null;
+    }
+
+    @Override
+    public Block getHighestBlockAt(Location location, HeightMap heightMap) {
+        return null;
+    }
+
+    @Override
     public Biome getBiome(int i, int i1) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -551,6 +571,16 @@ public class FakeWorld implements World {
     @Override
     public boolean canGenerateStructures() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean isHardcore() {
+        return false;
+    }
+
+    @Override
+    public void setHardcore(boolean b) {
+
     }
 
     @Override
