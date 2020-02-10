@@ -28,6 +28,10 @@ public class Commandnear extends EssentialsCommand {
             maxRadius = 200;
         }
 
+        if (maxRadius < 200) {
+            maxRadius = 200;
+        }
+
         long radius = maxRadius;
 
         User otherUser = null;
