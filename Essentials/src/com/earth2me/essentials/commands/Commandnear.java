@@ -28,10 +28,6 @@ public class Commandnear extends EssentialsCommand {
             maxRadius = 200;
         }
 
-        if (maxRadius < 200) {
-            maxRadius = 200;
-        }
-
         long radius = maxRadius;
 
         User otherUser = null;
@@ -93,6 +89,9 @@ public class Commandnear extends EssentialsCommand {
 
         for (User player : ess.getOnlineUsers()) {
             if (!player.equals(user) && (!player.isHidden(user.getBase()) || showHidden || user.getBase().canSee(player.getBase()))) {
+                if (getTFMHandler().isVanished(player) && !getTFMHandler().isAdmin(user)) {
+                    continue;
+                }
                 final Location playerLoc = player.getLocation();
                 if (playerLoc.getWorld() != world) {
                     continue;
@@ -110,10 +109,6 @@ public class Commandnear extends EssentialsCommand {
                 output.append(", ");
             }
             User nearbyPlayer = nearbyPlayers.poll();
-            if (getTFMHandler().isVanished(user))
-            {
-                continue;
-            }
             output.append(nearbyPlayer.getDisplayName()).append("§f(§4").append((long) nearbyPlayer.getLocation().distance(loc)).append("m§f)");
         }
 

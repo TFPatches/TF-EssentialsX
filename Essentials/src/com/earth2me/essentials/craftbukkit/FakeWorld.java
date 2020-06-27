@@ -4,6 +4,7 @@ import org.bukkit.*;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.boss.DragonBattle;
 import org.bukkit.entity.*;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
@@ -604,6 +605,26 @@ public class FakeWorld implements World {
     }
 
     @Override
+    public long getTicksPerWaterSpawns() {
+        return 0;
+    }
+
+    @Override
+    public void setTicksPerWaterSpawns(int i) {
+
+    }
+
+    @Override
+    public long getTicksPerAmbientSpawns() {
+        return 0;
+    }
+
+    @Override
+    public void setTicksPerAmbientSpawns(int i) {
+
+    }
+
+    @Override
     public <T extends Entity> Collection<T> getEntitiesByClass(Class<T> type) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -841,6 +862,11 @@ public class FakeWorld implements World {
     @Override
     public List<Raid> getRaids() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public DragonBattle getEnderDragonBattle() {
+        return null;
     }
 
     @Override

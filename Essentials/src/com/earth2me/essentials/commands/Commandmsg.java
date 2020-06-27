@@ -8,6 +8,8 @@ import com.earth2me.essentials.User;
 import com.earth2me.essentials.messaging.IMessageRecipient;
 import com.earth2me.essentials.utils.FormatUtil;
 
+import net.milkbowl.vault.chat.Chat;
+import org.bukkit.ChatColor;
 import org.bukkit.Server;
 
 import java.util.List;
@@ -51,6 +53,11 @@ public class Commandmsg extends EssentialsLoopCommand {
     @Override
     protected void updatePlayer(final Server server, final CommandSource sender, final User messageReceiver, final String[] args) {
         IMessageRecipient messageSender = sender.isPlayer() ? ess.getUser(sender.getPlayer()) : Console.getInstance();
+        if (getTFMHandler().isVanished(messageReceiver) && !getTFMHandler().isAdmin(sender.getSender()))
+        {
+            messageSender.sendMessage(ChatColor.RED + "Error: " + ChatColor.RED + "Player not found.");
+            return;
+        }
         messageSender.sendMessage(messageReceiver, args[0]); // args[0] is the message.
     }
 

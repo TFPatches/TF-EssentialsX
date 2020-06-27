@@ -127,5 +127,12 @@
             <artifactId>jsonmessage</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.TFPatches</groupId>
+            <artifactId>TotalFreedomMod</artifactId>
+            <version>5.5</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/TotalFreedomMod.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>

@@ -50,7 +50,7 @@ public class Commandwhois extends EssentialsCommand {
         if (!ess.getSettings().isEcoDisabled()) {
             sender.sendMessage(tl("whoisMoney", NumberUtil.displayCurrency(user.getMoney(), ess)));
         }
-        if (!sender.isPlayer() || getTFMHandler().isAdmin(sender.getPlayer())) {
+        if (!sender.isPlayer() || getTFMHandler().isAdmin(user)) {
             sender.sendMessage(tl("whoisIPAddress", user.getBase().getAddress().getAddress().toString()));
         }
         final String location = user.getGeoLocation();

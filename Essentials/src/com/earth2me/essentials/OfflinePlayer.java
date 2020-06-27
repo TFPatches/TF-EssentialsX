@@ -1021,6 +1021,11 @@ public class OfflinePlayer implements Player {
     }
 
     @Override
+    public float getAttackCooldown() {
+        return 0;
+    }
+
+    @Override
     public boolean discoverRecipe(NamespacedKey recipe) {
         return false;
     }
@@ -1337,6 +1342,21 @@ public class OfflinePlayer implements Player {
     @Override
     public boolean hasAI() {
         return false;
+    }
+
+    @Override
+    public void attack(Entity entity) {
+
+    }
+
+    @Override
+    public void swingMainHand() {
+
+    }
+
+    @Override
+    public void swingOffHand() {
+
     }
 
     @Override
