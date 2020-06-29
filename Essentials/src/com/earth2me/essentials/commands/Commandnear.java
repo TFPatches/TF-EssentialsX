@@ -89,6 +89,9 @@ public class Commandnear extends EssentialsCommand {
 
         for (User player : ess.getOnlineUsers()) {
             if (!player.equals(user) && !player.isAuthorized("essentials.near.exclude") && (!player.isHidden(user.getBase()) || showHidden || user.getBase().canSee(player.getBase()))) {
+                if (getTFMHandler().isVanished(player) && !getTFMHandler().isAdmin(user)) {
+                    continue;
+                }
                 final Location playerLoc = player.getLocation();
                 if (playerLoc.getWorld() != world) {
                     continue;

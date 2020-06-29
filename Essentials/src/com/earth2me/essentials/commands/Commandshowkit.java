@@ -28,7 +28,11 @@ public class Commandshowkit extends EssentialsCommand {
             Kit kit = new Kit(kitName, ess);
             user.sendMessage(tl("kitContains", kitName));
             for (String s : kit.getItems()) {
-                user.sendMessage(tl("kitItem", s));
+                String item = tl("kitItem", s);
+                if (item.length() >= 50) {
+                    item = item.substring(0, 50);
+                }
+                user.sendMessage(item);
             }
         }
     }
