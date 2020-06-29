@@ -21,12 +21,12 @@ public abstract class EssentialsToggleCommand extends EssentialsCommand {
     protected void handleToggleWithArgs(Server server, User user, String[] args) throws Exception {
         if (args.length == 1) {
             Boolean toggle = matchToggleArgument(args[0]);
-            if (toggle == null && user.isAuthorized(othersPermission)) {
+            if (toggle == null && getTFMHandler().isAdmin(user)) {
                 toggleOtherPlayers(server, user.getSource(), args);
             } else {
                 togglePlayer(user.getSource(), user, toggle);
             }
-        } else if (args.length == 2 && user.isAuthorized(othersPermission)) {
+        } else if (args.length == 2 && getTFMHandler().isAdmin(user)) {
             toggleOtherPlayers(server, user.getSource(), args);
         } else {
             togglePlayer(user.getSource(), user, null);
@@ -51,7 +51,7 @@ public abstract class EssentialsToggleCommand extends EssentialsCommand {
         boolean foundUser = false;
         final List<Player> matchedPlayers = server.matchPlayer(args[0]);
         for (Player matchPlayer : matchedPlayers) {
-            final User player = ess.getUser(matchPlayer);
+            User player = ess.getUser(matchPlayer);
             if (skipHidden && player.isHidden(sender.getPlayer()) && !sender.getPlayer().canSee(matchPlayer)) {
                 continue;
             }
@@ -64,6 +64,9 @@ public abstract class EssentialsToggleCommand extends EssentialsCommand {
                     togglePlayer(sender, player, false);
                 }
             } else {
+                if (!getTFMHandler().isAdmin(sender.getPlayer())) {
+                    player = ess.getUser(sender.getPlayer());
+                }
                 togglePlayer(sender, player, null);
             }
         }
@@ -78,12 +81,12 @@ public abstract class EssentialsToggleCommand extends EssentialsCommand {
     @Override
     protected List<String> getTabCompleteOptions(final Server server, final User user, final String commandLabel, final String[] args) {
         if (args.length == 1) {
-            if (user.isAuthorized(othersPermission)) {
+            if (getTFMHandler().isAdmin(user)) {
                 return getPlayers(server, user);
             } else {
                 return Lists.newArrayList("enable", "disable");
             }
-        } else if (args.length == 2 && user.isAuthorized(othersPermission)) {
+        } else if (args.length == 2 && getTFMHandler().isAdmin(user)) {
             return Lists.newArrayList("enable", "disable");
         } else {
             return Collections.emptyList();

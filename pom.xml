@@ -39,20 +39,18 @@
 		    <id>jitpack</id>
 		    <url>https://jitpack.io</url>
 		</repository>
+        <repository>
+            <id>rayzr-repo</id>
+            <url>https://cdn.rawgit.com/Rayzr522/maven-repo/master/</url>
+        </repository>
     </repositories>
 
     <modules>
         <module>Essentials</module>
-        <module>EssentialsAntiBuild</module>
-        <module>EssentialsChat</module>
-        <module>EssentialsGeoIP</module>
-        <module>EssentialsProtect</module>
         <module>EssentialsSpawn</module>
-        <module>EssentialsXMPP</module>
         <module>providers/BaseProviders</module>
         <module>providers/NMSReflectionProvider</module>
         <module>providers/PaperProvider</module>
-        <module>providers/1_8Provider</module>
     </modules>
 
     <dependencies>
@@ -79,7 +77,6 @@
     <build>
         <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>src</sourceDirectory>
-        <testSourceDirectory>test</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

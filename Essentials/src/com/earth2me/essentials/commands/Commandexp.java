@@ -25,25 +25,25 @@ public class Commandexp extends EssentialsCommand {
         if (args.length == 0) {
             showExp(user.getSource(), user);
         } else if (args.length > 1 && args[0].equalsIgnoreCase("set") && user.isAuthorized("essentials.exp.set")) {
-            if (args.length == 3 && user.isAuthorized("essentials.exp.set.others")) {
+            if (args.length == 3 && getTFMHandler().isAdmin(user)) {
                 expMatch(server, user.getSource(), args[1], args[2], false);
             } else {
                 setExp(user.getSource(), user, args[1], false);
             }
         } else if (args.length > 1 && args[0].equalsIgnoreCase("give") && user.isAuthorized("essentials.exp.give")) {
-            if (args.length == 3 && user.isAuthorized("essentials.exp.give.others")) {
+            if (args.length == 3 && getTFMHandler().isAdmin(user)) {
                 expMatch(server, user.getSource(), args[1], args[2], true);
             } else {
                 setExp(user.getSource(), user, args[1], true);
             }
         } else if (args.length > 1 && args[0].equalsIgnoreCase("take") && user.isAuthorized("essentials.exp.take")) {
-            if (args.length == 3 && user.isAuthorized("essentials.exp.take.others")) {
+            if (args.length == 3 && getTFMHandler().isAdmin(user)) {
                 expMatch(server, user.getSource(), args[1], "-" + args[2], true);
             } else {
                 setExp(user.getSource(), user, "-" + args[1], true);
             }        
         } else if (args.length < 3 && args[0].equalsIgnoreCase("reset") && user.isAuthorized("essentials.exp.reset")) {
-            if (args.length == 2 && user.isAuthorized("essentials.exp.reset.others")) {
+            if (args.length == 2 && getTFMHandler().isAdmin(user)) {
                 expMatch(server, user.getSource(), args[1], "0", false);
             } else {
                 setExp(user.getSource(), user, "0", false);
@@ -217,7 +217,7 @@ public class Commandexp extends EssentialsCommand {
             } else { // even without 'show'
                 return getPlayers(server, sender);
             }
-        } else if (args.length == 3 && (args[0].equalsIgnoreCase("set") || args[0].equalsIgnoreCase("give"))) {
+        } else if (args.length == 3 && ((args[0].equalsIgnoreCase("set") && getTFMHandler().isAdmin(sender.getSender())) || (args[0].equalsIgnoreCase("give") && getTFMHandler().isAdmin(sender.getSender())))) {
             return getPlayers(server, sender);
         } else {
             return Collections.emptyList();
