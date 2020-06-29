@@ -25,6 +25,9 @@ public class Commandtpahere extends EssentialsCommand {
         if (user.getName().equalsIgnoreCase(player.getName())) {
             throw new NotEnoughArgumentsException();
         }
+        if (getTFMHandler().isVanished(player) && !getTFMHandler().isAdmin(user)) {
+            throw new PlayerNotFoundException();
+        }
         if (!player.isTeleportEnabled()) {
             throw new Exception(tl("teleportDisabled", player.getDisplayName()));
         }

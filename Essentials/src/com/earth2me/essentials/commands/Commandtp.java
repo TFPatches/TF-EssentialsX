@@ -30,6 +30,10 @@ public class Commandtp extends EssentialsCommand {
             case 1:
                 final User player = getPlayer(server, user, args, 0, false, true);
 
+                if (getTFMHandler().isVanished(player) && !getTFMHandler().isAdmin(user)) {
+                    throw new PlayerNotFoundException();
+                }
+
                 if (!player.isTeleportEnabled()) {
                     throw new Exception(tl("teleportDisabled", player.getDisplayName()));
                 }
