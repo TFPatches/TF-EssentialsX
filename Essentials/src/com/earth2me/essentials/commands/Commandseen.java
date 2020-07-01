@@ -98,7 +98,6 @@ public class Commandseen extends EssentialsCommand {
     }
 
     private void seenOnline(final Server server, final CommandSource sender, final User user, final boolean showBan, final boolean showIp, final boolean showLocation) throws Exception {
-
         user.setDisplayNick();
         sender.sendMessage(tl("seenOnline", user.getDisplayName(), DateUtil.formatDateDiff(user.getLastLogin())));
 
@@ -130,14 +129,7 @@ public class Commandseen extends EssentialsCommand {
             sender.sendMessage(tl("whoisGeoLocation", location));
         }
         if (showIp) {
-            if (sender.isPlayer()) {
-                JSONMessage.create(tl("whoisIPAddress", user.getBase().getAddress().getAddress().toString()))
-                        .tooltip("Click to lookup their IP address.")
-                        .runCommand("/seen " + user.getBase().getAddress().getAddress().toString().replace("/", ""))
-                        .send(sender.getPlayer());
-            } else {
-                sender.sendMessage(tl("whoisIPAddress", user.getBase().getAddress().getAddress().toString()));
-            }
+            sender.sendMessage(tl("whoisIPAddress", user.getBase().getAddress().getAddress().toString()));
         }
     }
 

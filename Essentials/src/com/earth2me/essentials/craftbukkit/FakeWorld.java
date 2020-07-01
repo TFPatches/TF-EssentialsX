@@ -637,16 +637,6 @@ public class FakeWorld implements World {
     }
 
     @Override
-    public long getTicksPerWaterAmbientSpawns() {
-        return 0;
-    }
-
-    @Override
-    public void setTicksPerWaterAmbientSpawns(int i) {
-
-    }
-
-    @Override
     public long getTicksPerAmbientSpawns() {
         return 0;
     }
@@ -734,16 +724,6 @@ public class FakeWorld implements World {
     @Override
     public void setWaterAnimalSpawnLimit(int arg0) {
         throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public int getWaterAmbientSpawnLimit() {
-        return 0;
-    }
-
-    @Override
-    public void setWaterAmbientSpawnLimit(int i) {
-
     }
 
     @Override

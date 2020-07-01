@@ -40,7 +40,7 @@ public class TFMHandler
 
     public boolean isAdmin(User user)
     {
-        return isAdmin(user.getBase());
+        return getTFM().al.isAdmin(user.getBase());
     }
 
     public boolean isAdmin(CommandSender sender)

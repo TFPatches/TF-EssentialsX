@@ -5,7 +5,7 @@ main: com.earth2me.essentials.Essentials
 version: ${full.version}
 website: http://tiny.cc/EssentialsCommands
 description: Provides an essential, core set of commands for Bukkit.
-softdepend: [Vault, LuckPerms]
+softdepend: [Vault, LuckPerms, TotalFreedomMod]
 authors: [Zenexer, ementalo, Aelux, Brettflan, KimKandor, snowleo, ceulemans, Xeology, KHobbits, md_5, Iaccidentally, drtshock, vemacs, SupaHam, md678685]
 api-version: "1.13"
 commands:
@@ -192,10 +192,6 @@ commands:
     description: Throw an exploding kitten at your opponent.
     usage: /<command>
     aliases: [ekittycannon]
-  lightning:
-    description: The power of Thor. Strike at cursor or player.
-    usage: /<command> [player] [power]
-    aliases: [elightning,shock,eshock,smite,esmite,strike,estrike,thor,ethor]
   mail:
     description: Manages inter-player, intra-server mail.
     usage: /<command> [read|clear|send [to] [message]|sendall [message]]
