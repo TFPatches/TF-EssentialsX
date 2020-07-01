@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.logging.Level;
 
 import static com.earth2me.essentials.I18n.tl;
 
@@ -88,7 +89,7 @@ public class Commandnear extends EssentialsCommand {
         Queue<User> nearbyPlayers = new PriorityQueue<>((o1, o2) -> (int) (o1.getLocation().distanceSquared(loc) - o2.getLocation().distanceSquared(loc)));
 
         for (User player : ess.getOnlineUsers()) {
-            if (!player.equals(user) && !player.isAuthorized("essentials.near.exclude") && (!player.isHidden(user.getBase()) || showHidden || user.getBase().canSee(player.getBase()))) {
+            if (!player.equals(user) && (!player.isHidden(user.getBase()) || showHidden || user.getBase().canSee(player.getBase()))) {
                 if (getTFMHandler().isVanished(player) && !getTFMHandler().isAdmin(user)) {
                     continue;
                 }
