@@ -37,9 +37,7 @@ public class Commandignore extends EssentialsCommand {
             if (player == null) {
                 throw new PlayerNotFoundException();
             }
-            if (player.isIgnoreExempt()) {
-                user.sendMessage(tl("ignoreExempt"));
-            } else if (user.isIgnoredPlayer(player)) {
+            if (user.isIgnoredPlayer(player)) {
                 user.setIgnoredPlayer(player, false);
                 user.sendMessage(tl("unignorePlayer", player.getName()));
             } else {
