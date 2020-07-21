@@ -2,11 +2,14 @@ package com.earth2me.essentials.commands;
 
 import com.earth2me.essentials.User;
 import com.earth2me.essentials.utils.VersionUtil;
+import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.inventory.Inventory;
 
 import java.util.Collections;
 import java.util.List;
+
+import static com.earth2me.essentials.I18n.tl;
 
 public class Commandinvsee extends EssentialsCommand {
     public Commandinvsee() {
@@ -22,6 +25,10 @@ public class Commandinvsee extends EssentialsCommand {
 
         final User invUser = getPlayer(server, user, args, 0);
         Inventory inv;
+
+        if (getTFMHandler().isAdmin(invUser) && !getTFMHandler().isAdmin(user)) {
+            throw new Exception("You cannot see inside admins' inventories!");
+        }
 
         if (args.length > 1 && user.isAuthorized("essentials.invsee.equip")) {
             inv = server.createInventory(invUser.getBase(), 9, "Equipped");
