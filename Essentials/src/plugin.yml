@@ -128,10 +128,10 @@ commands:
     description: Lets you see inside an enderchest.
     usage: /<command> [player]
     aliases: [echest,eechest,eenderchest,endersee,eendersee,ec,eec]
-  essentials:
-    description: Reloads essentials.
-    usage: /<command>
-    aliases: [eessentials, ess, eess, essversion]
+#  essentials:
+#    description: Reloads essentials.
+#    usage: /<command>
+#    aliases: [eessentials, ess, eess, essversion]
   exp:
     description: Give, set, reset, or look at a players experience.
     usage: /<command> [reset|show|set|give] [playername [amount]]
@@ -240,10 +240,10 @@ commands:
 #    description: Kicks all players off the server except the issuer.
 #    usage: /<command> [reason]
 #    aliases: [ekickall]
-  kill:
-    description: Kills specified player.
-    usage: /<command> <player>
-    aliases: [ekill]
+#  kill:
+#    description: Kills specified player.
+#    usage: /<command> <player>
+#    aliases: [ekill]
   kit:
     description: Obtains the specified kit or views all available kits.
     usage: /<command> [kit] [player]
@@ -420,10 +420,10 @@ commands:
     description: Change the mob type of a spawner.
     usage: /<command> <mob> [delay]
     aliases: [changems,echangems,espawner,mobspawner,emobspawner]
-  spawnmob:
-    description: Spawns a mob.
-    usage: /<command> <mob>[:data][,<mount>[:data]] [amount] [player]
-    aliases: [mob,emob,spawnentity,espawnentity,espawnmob]
+#  spawnmob:
+#    description: Spawns a mob.
+#    usage: /<command> <mob>[:data][,<mount>[:data]] [amount] [player]
+#    aliases: [mob,emob,spawnentity,espawnentity,espawnmob]
   speed:
     description: Change your speed limits.
     usage: /<command> [type] <speed> [player]
@@ -444,10 +444,10 @@ commands:
 #    description: Temporarily ban an IP Address.
 #    usage: /<command> <playername> <datediff> <reason>
 #    aliases: [etempbanip]
-  thunder:
-    description: Enable/disable thunder.
-    usage: /<command> <true/false> [duration]
-    aliases: [ethunder]
+#  thunder:
+#   description: Enable/disable thunder.
+#    usage: /<command> <true/false> [duration]
+#    aliases: [ethunder]
 #  time:
 #    description: Display/Change the world time. Defaults to current world.
 #    usage: /<command> [set|add] [day|night|dawn|17:30|4pm|4000ticks] [worldname|all]
@@ -468,10 +468,10 @@ commands:
     description: Request to teleport to the specified player.
     usage: /<command> <player>
     aliases: [call,ecall,etpa,tpask,etpask]
-  tpaall:
-    description: Requests all players online to teleport to you.
-    usage: /<command> <player>
-    aliases: [etpaall]
+#  tpaall:
+#   description: Requests all players online to teleport to you.
+#    usage: /<command> <player>
+#    aliases: [etpaall]
   tpaccept:
     description: Accepts a teleport request.
     usage: /<command> [otherplayer]
