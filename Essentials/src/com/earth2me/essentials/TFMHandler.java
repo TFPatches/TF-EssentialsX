@@ -27,7 +27,7 @@ public class TFMHandler
                 final Plugin tfm = plugin.getServer().getPluginManager().getPlugin("TotalFreedomMod");
                 if (tfm != null && tfm instanceof TotalFreedomMod)
                 {
-                    tfmPlugin = (TotalFreedomMod) tfm;
+                    tfmPlugin = (TotalFreedomMod)tfm;
                 }
             }
             catch (Exception ex)
@@ -64,7 +64,7 @@ public class TFMHandler
         {
             getTFM();
         }
-        return getTFM().al.isVanished(player);
+        return AdminList.vanished.contains(player);
     }
 
     public void warning(String warning)
