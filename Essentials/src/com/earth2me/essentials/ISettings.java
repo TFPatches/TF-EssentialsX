@@ -107,6 +107,8 @@ public interface ISettings extends IConf {
 
     boolean getRespawnAtHome();
 
+    boolean isRespawnAtAnchor();
+
     Set getMultipleHomes();
 
     int getHomeLimit(String set);
@@ -121,7 +123,11 @@ public interface ISettings extends IConf {
 
     boolean isForceDisableTeleportSafety();
 
+    boolean isAlwaysTeleportSafety();
+
     boolean isTeleportPassengerDismount();
+
+    boolean isForcePassengerTeleport();
 
     double getTeleportCooldown();
 
@@ -205,6 +211,10 @@ public interface ISettings extends IConf {
     KeepInvPolicy getVanishingItemsPolicy();
 
     KeepInvPolicy getBindingItemsPolicy();
+
+    int getJoinQuitMessagePlayerCount();
+
+    boolean hasJoinQuitMessagePlayerCount();
 
     enum KeepInvPolicy {
         KEEP,
@@ -352,8 +362,6 @@ public interface ISettings extends IConf {
 
     String getItemDbType();
 
-    boolean isForceEnableRecipe();
-
     boolean allowOldIdSigns();
 
     boolean isWaterSafe();
@@ -369,6 +377,8 @@ public interface ISettings extends IConf {
     boolean isRemovingEffectsOnHeal();
 
     boolean isSpawnIfNoHome();
+
+    boolean isConfirmHomeOverwrite();
 
     boolean infoAfterDeath();
 

@@ -3,11 +3,11 @@ package com.earth2me.essentials;
 import com.earth2me.essentials.api.IItemDb;
 import com.earth2me.essentials.api.IJails;
 import com.earth2me.essentials.api.IWarps;
-import com.earth2me.essentials.metrics.Metrics;
 import com.earth2me.essentials.perm.PermissionsHandler;
 import com.earth2me.essentials.register.payment.Methods;
 import net.ess3.provider.ServerStateProvider;
-import net.ess3.provider.SpawnerProvider;
+import net.ess3.provider.SpawnerBlockProvider;
+import net.ess3.provider.SpawnerItemProvider;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -67,6 +67,8 @@ public interface IEssentials extends Plugin {
 
     Kits getKits();
 
+    RandomTeleport getRandomTeleport();
+
     Methods getPaymentMethod();
 
     BukkitTask runTaskAsynchronously(Runnable run);
@@ -93,10 +95,6 @@ public interface IEssentials extends Plugin {
 
     UserMap getUserMap();
 
-    Metrics getMetrics();
-
-    void setMetrics(Metrics metrics);
-
     EssentialsTimer getTimer();
 
     @Deprecated
@@ -104,9 +102,11 @@ public interface IEssentials extends Plugin {
 
     Collection<Player> getOnlinePlayers();
 
-    Iterable<User> getOnlineUsers();
+    Collection<User> getOnlineUsers();
 
-    SpawnerProvider getSpawnerProvider();
+    SpawnerItemProvider getSpawnerItemProvider();
+
+    SpawnerBlockProvider getSpawnerBlockProvider();
 
     ServerStateProvider getServerStateProvider();
 }

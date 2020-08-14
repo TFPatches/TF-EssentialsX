@@ -10,6 +10,7 @@ import org.bukkit.Server;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import static com.earth2me.essentials.I18n.tl;
 
@@ -23,7 +24,6 @@ public class Commandsethome extends EssentialsCommand {
     public void run(final Server server, final User user, final String commandLabel, String[] args) throws Exception {
         User usersHome = user;
         String name = "home";
-        final Location location = user.getLocation();
 
         if (args.length > 0) {
             //Allowing both formats /sethome khobbits house | /sethome khobbits:house
@@ -51,12 +51,21 @@ public class Commandsethome extends EssentialsCommand {
             throw new NoSuchFieldException(tl("invalidHomeName"));
         }
 
+        final Location location = user.getLocation();
         if (!ess.getSettings().isTeleportSafetyEnabled() && LocationUtil.isBlockUnsafeForUser(usersHome, location.getWorld(), location.getBlockX(), location.getBlockY(), location.getBlockZ())) {
             throw new Exception(tl("unsafeTeleportDestination", location.getWorld().getName(), location.getBlockX(), location.getBlockY(), location.getBlockZ()));
         }
 
+        if (ess.getSettings().isConfirmHomeOverwrite() && usersHome.hasHome(name) && (!name.equals(usersHome.getLastHomeConfirmation()) || name.equals(usersHome.getLastHomeConfirmation()) && System.currentTimeMillis() - usersHome.getLastHomeConfirmationTimestamp() > TimeUnit.MINUTES.toMillis(2))) {
+            usersHome.setLastHomeConfirmation(name);
+            usersHome.setLastHomeConfirmationTimestamp();
+            user.sendMessage(tl("homeConfirmation", name));
+            return;
+        }
+
         usersHome.setHome(name, location);
         user.sendMessage(tl("homeSet", user.getLocation().getWorld().getName(), user.getLocation().getBlockX(), user.getLocation().getBlockY(), user.getLocation().getBlockZ(), name));
+        usersHome.setLastHomeConfirmation(null);
 
     }
 
