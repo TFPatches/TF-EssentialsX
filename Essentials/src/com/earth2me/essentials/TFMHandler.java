@@ -64,7 +64,7 @@ public class TFMHandler
         {
             getTFM();
         }
-        return AdminList.vanished.contains(player.getName());
+        return getTFM().al.isVanished(player);
     }
 
     public void warning(String warning)

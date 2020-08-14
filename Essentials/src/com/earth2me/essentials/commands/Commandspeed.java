@@ -44,7 +44,7 @@ public class Commandspeed extends EssentialsCommand {
         } else {
             isFly = flyPermCheck(user, isFlyMode(args[0]));
             speed = getMoveSpeed(args[1]);
-            if (args.length > 2 && user.isAuthorized("essentials.speed.others")) {
+            if (args.length > 2 && getTFMHandler().isAdmin(user)) {
                 if (args[2].trim().length() < 2) {
                     throw new PlayerNotFoundException();
                 }
@@ -141,7 +141,7 @@ public class Commandspeed extends EssentialsCommand {
             return types;
         } else if (args.length == 2) {
             return speeds;
-        } else if (args.length == 3 && sender.isAuthorized("essentials.speed.others", ess)) {
+        } else if (args.length == 3 && getTFMHandler().isAdmin(sender.getPlayer())) {
             return getPlayers(server, sender);
         } else {
             return Collections.emptyList();

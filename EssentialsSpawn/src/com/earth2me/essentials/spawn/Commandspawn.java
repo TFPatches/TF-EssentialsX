@@ -2,6 +2,7 @@ package com.earth2me.essentials.spawn;
 
 import com.earth2me.essentials.CommandSource;
 import com.earth2me.essentials.Console;
+import com.earth2me.essentials.TFMHandler;
 import com.earth2me.essentials.Trade;
 import com.earth2me.essentials.User;
 import com.earth2me.essentials.commands.EssentialsCommand;

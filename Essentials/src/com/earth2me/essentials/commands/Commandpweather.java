@@ -54,7 +54,7 @@ public class Commandpweather extends EssentialsLoopCommand {
             }
         }
 
-        if (args.length > 1 && !sender.isAuthorized("essentials.pweather.others", ess) && !args[1].equalsIgnoreCase(sender.getSelfSelector())) {
+        if (args.length > 1 && !getTFMHandler().isAdmin(sender.getPlayer()) && !args[1].equalsIgnoreCase(sender.getSelfSelector())) {
             sender.sendMessage(tl("pWeatherOthersPermission"));
             return;
         }
@@ -102,7 +102,7 @@ public class Commandpweather extends EssentialsLoopCommand {
     protected List<String> getTabCompleteOptions(Server server, User user, String commandLabel, String[] args) {
         if (args.length == 1) {
             return Lists.newArrayList("get", "reset", "storm", "sun");
-        } else if (args.length == 2 && (getAliases.contains(args[0]) || user == null || user.isAuthorized("essentials.pweather.others"))) {
+        } else if (args.length == 2 && (getAliases.contains(args[0]) || user == null || getTFMHandler().isAdmin(user))) {
             return getPlayers(server, user);
         } else {
             return Collections.emptyList();

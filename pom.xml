@@ -24,10 +24,6 @@
 
     <repositories>
         <repository>
-            <id>jitpack</id>
-            <url>https://jitpack.io</url>
-        </repository>
-        <repository>
             <id>ess-repo</id>
             <url>https://ci.ender.zone/plugin/repository/everything/</url>
         </repository>
@@ -40,8 +36,8 @@
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
         <repository>
-            <id>rayzr-repo</id>
-            <url>https://cdn.rawgit.com/Rayzr522/maven-repo/master/</url>
+            <id>jitpack</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
@@ -51,6 +47,7 @@
         <module>providers/BaseProviders</module>
         <module>providers/NMSReflectionProvider</module>
         <module>providers/PaperProvider</module>
+        <module>providers/1_8Provider</module>
     </modules>
 
     <dependencies>
@@ -72,11 +69,18 @@
             <version>3.2.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.TFPatches</groupId>
+            <artifactId>TotalFreedomMod</artifactId>
+            <version>development-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>test</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -102,32 +106,7 @@
                         </artifactItem>
                         <artifactItem>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>EssentialsXAntiBuild</artifactId>
-                            <version>${project.version}</version>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>EssentialsXChat</artifactId>
-                            <version>${project.version}</version>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>EssentialsXGeoIP</artifactId>
-                            <version>${project.version}</version>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>EssentialsXProtect</artifactId>
-                            <version>${project.version}</version>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>${project.groupId}</groupId>
                             <artifactId>EssentialsXSpawn</artifactId>
-                            <version>${project.version}</version>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>EssentialsXXMPP</artifactId>
                             <version>${project.version}</version>
                         </artifactItem>
                     </artifactItems>

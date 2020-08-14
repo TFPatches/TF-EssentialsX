@@ -59,11 +59,6 @@ public class Commandhat extends EssentialsCommand {
                 return;
             }
 
-            if (user.isAuthorized("essentials.hat.prevent-type." + hand.getType().name().toLowerCase())) {
-                user.sendMessage(tl("hatFail"));
-                return;
-            }
-
             if (hand.getType().getMaxDurability() != 0) {
                 user.sendMessage(tl("hatArmor"));
                 return;
