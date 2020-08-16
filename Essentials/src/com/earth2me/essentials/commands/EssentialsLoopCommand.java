@@ -28,6 +28,8 @@ public abstract class EssentialsLoopCommand extends EssentialsCommand {
             throw new PlayerNotFoundException();
         }
 
+        matchWildcards = getTFMHandler().isAdmin(sender.getPlayer());
+
         final UUID uuid = StringUtil.toUUID(searchTerm);
         if (uuid != null) {
             final User matchedUser = ess.getUser(uuid);
@@ -73,6 +75,7 @@ public abstract class EssentialsLoopCommand extends EssentialsCommand {
             throw new PlayerNotFoundException();
         }
 
+        matchWildcards = getTFMHandler().isAdmin(sender.getPlayer());
         boolean skipHidden = sender.isPlayer() && !ess.getUser(sender.getPlayer()).canInteractVanished();
 
         if (matchWildcards && (searchTerm.contentEquals("**") || searchTerm.contentEquals("*"))) {

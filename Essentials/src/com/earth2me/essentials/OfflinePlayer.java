@@ -1642,6 +1642,12 @@ public class OfflinePlayer implements Player {
     }
 
     @Override
+    public boolean dropItem(boolean b)
+    {
+        return false;
+    }
+
+    @Override
     public double getHeight() {
         return 0;
     }
