@@ -6,6 +6,7 @@ import com.earth2me.essentials.TFMHandler;
 import com.earth2me.essentials.Trade;
 import com.earth2me.essentials.User;
 import com.earth2me.essentials.commands.EssentialsCommand;
+import com.earth2me.essentials.commands.NoChargeException;
 import com.earth2me.essentials.commands.NotEnoughArgumentsException;
 import org.bukkit.Location;
 import org.bukkit.Server;
@@ -41,6 +42,8 @@ public class Commandspawn extends EssentialsCommand {
         } else {
             respawn(user.getSource(), user, user, charge, commandLabel, new CompletableFuture<>());
         }
+        
+        throw new NoChargeException();
     }
 
     @Override
