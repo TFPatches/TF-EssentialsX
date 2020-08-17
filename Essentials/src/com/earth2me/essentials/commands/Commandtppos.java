@@ -67,7 +67,7 @@ public class Commandtppos extends EssentialsCommand {
         }
 
         User user = getPlayer(server, args, 0, true, false);
-        if (getTFMHandler().isVanished(user) && !getTFMHandler().isAdmin(sender.getSender())) {
+        if (getTFMHandler().isVanished(user) && !getTFMHandler().isStaff(sender.getSender())) {
             throw new PlayerNotFoundException();
         }
         final double x = args[1].startsWith("~") ? user.getLocation().getX() + (args[1].length() > 1 ? Integer.parseInt(args[1].substring(1)) : 0) : Integer.parseInt(args[1]);

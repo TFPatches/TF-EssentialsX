@@ -2,7 +2,6 @@ package com.earth2me.essentials.spawn;
 
 import com.earth2me.essentials.CommandSource;
 import com.earth2me.essentials.Console;
-import com.earth2me.essentials.TFMHandler;
 import com.earth2me.essentials.Trade;
 import com.earth2me.essentials.User;
 import com.earth2me.essentials.commands.EssentialsCommand;
@@ -28,7 +27,7 @@ public class Commandspawn extends EssentialsCommand {
     public void run(final Server server, final User user, final String commandLabel, final String[] args) throws Exception {
         final Trade charge = new Trade(this.getName(), ess);
         charge.isAffordableFor(user);
-        if (args.length > 0 && getTFMHandler().isAdmin(user)) {
+        if (args.length > 0 && getTFMHandler().isStaff(user)) {
             final User otherUser = getPlayer(server, user, args, 0);
             CompletableFuture<Boolean> future = new CompletableFuture<>();
             future.thenAccept(success -> {

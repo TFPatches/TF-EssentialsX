@@ -14,7 +14,7 @@ public class Commandenderchest extends EssentialsCommand {
     @Override
     protected void run(final Server server, final User user, final String commandLabel, final String[] args) throws Exception {
         User target = user;
-        if (args.length > 0 && getTFMHandler().isAdmin(user)) {
+        if (args.length > 0 && getTFMHandler().isStaff(user)) {
             target = getPlayer(server, user, args, 0);
         }
 
@@ -25,7 +25,7 @@ public class Commandenderchest extends EssentialsCommand {
 
     @Override
     protected List<String> getTabCompleteOptions(Server server, User user, String commandLabel, String[] args) {
-        if (args.length == 1 && getTFMHandler().isAdmin(user)) {
+        if (args.length == 1 && getTFMHandler().isStaff(user)) {
             return getPlayers(server, user);
         } else {
             return Collections.emptyList();

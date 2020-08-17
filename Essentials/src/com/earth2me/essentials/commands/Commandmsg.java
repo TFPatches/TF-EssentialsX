@@ -27,7 +27,7 @@ public class Commandmsg extends EssentialsLoopCommand
         }
 
         String message = getFinalArg(args, 1);
-        boolean canWildcard = getTFMHandler().isAdmin(sender.getPlayer());
+        boolean canWildcard = getTFMHandler().isStaff(sender.getPlayer());
         if (sender.isPlayer())
         {
             User user = ess.getUser(sender.getPlayer());
@@ -62,7 +62,7 @@ public class Commandmsg extends EssentialsLoopCommand
     protected void updatePlayer(final Server server, final CommandSource sender, final User messageReceiver, final String[] args)
     {
         IMessageRecipient messageSender = sender.isPlayer() ? ess.getUser(sender.getPlayer()) : Console.getInstance();
-        if (getTFMHandler().isVanished(messageReceiver) && !getTFMHandler().isAdmin(sender.getSender()))
+        if (getTFMHandler().isVanished(messageReceiver) && !getTFMHandler().isStaff(sender.getSender()))
         {
             messageSender.sendMessage(ChatColor.RED + "Error: " + ChatColor.RED + "Player not found.");
             return;

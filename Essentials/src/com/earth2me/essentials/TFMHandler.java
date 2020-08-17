@@ -38,19 +38,19 @@ public class TFMHandler
         return tfmPlugin;
     }
 
-    public boolean isAdmin(User user)
+    public boolean isStaff(User user)
     {
-        return getTFM().sl.isAdmin(user.getBase());
+        return getTFM().sl.isStaff(user.getBase());
     }
 
-    public boolean isAdmin(CommandSender sender)
+    public boolean isStaff(CommandSender sender)
     {
-        return getTFM().sl.isAdmin(sender);
+        return getTFM().sl.isStaff(sender);
     }
 
-    public boolean isAdmin(Player player)
+    public boolean isStaff(Player player)
     {
-        return getTFM().sl.isAdmin(player);
+        return getTFM().sl.isStaff(player);
     }
 
     public boolean isVanished(User user)

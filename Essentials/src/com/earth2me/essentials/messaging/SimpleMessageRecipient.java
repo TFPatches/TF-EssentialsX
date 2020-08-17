@@ -137,7 +137,7 @@ public class SimpleMessageRecipient implements IMessageRecipient {
         boolean afk = false;
         boolean isLastMessageReplyRecipient = ess.getSettings().isLastMessageReplyRecipient();
         if (user != null) {
-            if (user.isIgnoreMsg() && sender instanceof IUser && !tfmHandler.isAdmin(((IUser) sender).getBase())) { // Don't ignore console and senders with permission
+            if (user.isIgnoreMsg() && sender instanceof IUser && !tfmHandler.isStaff(((IUser) sender).getBase())) { // Don't ignore console and senders with permission
                 return MessageResponse.MESSAGES_IGNORED;
             }
             afk = user.isAfk();
