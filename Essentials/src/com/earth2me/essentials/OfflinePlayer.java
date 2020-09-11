@@ -202,6 +202,30 @@ public class OfflinePlayer implements Player {
     }
 
     @Override
+    public int getArrowCooldown()
+    {
+        return 0;
+    }
+
+    @Override
+    public void setArrowCooldown(int i)
+    {
+
+    }
+
+    @Override
+    public int getArrowsInBody()
+    {
+        return 0;
+    }
+
+    @Override
+    public void setArrowsInBody(int i)
+    {
+
+    }
+
+    @Override
     public boolean isSneaking() {
         return false;
     }
@@ -1393,6 +1417,12 @@ public class OfflinePlayer implements Player {
     @Override
     public <T> void setMemory(MemoryKey<T> memoryKey, T t) {
 
+    }
+
+    @Override
+    public EntityCategory getCategory()
+    {
+        return null;
     }
 
     @Override
