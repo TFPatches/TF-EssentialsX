@@ -36,7 +36,7 @@ public class Commanddelhome extends EssentialsCommand {
             expandedArg = args;
         }
 
-        if (expandedArg.length > 1 && (user == null || user.isAuthorized("essentials.delhome.others"))) {
+        if (expandedArg.length > 1 && (user == null || getTFMHandler().isStaff(user))) {
             user = getPlayer(server, expandedArg, 0, true, true);
             name = expandedArg[1];
         } else if (user == null) {
