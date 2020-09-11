@@ -30,7 +30,7 @@ public class Commandnick extends EssentialsLoopCommand {
             throw new Exception(tl("nickDisplayName"));
         }
 
-        if (args.length > 1 && getTFMHandler().isStaff(user)) {
+        if (args.length > 1 && user.isAuthorized("essentials.nick.others")) {
             loopOfflinePlayers(server, user.getSource(), false, true, args[0], formatNickname(user, args[1]).split(" "));
             user.sendMessage(tl("nickChanged"));
         } else {
@@ -123,17 +123,8 @@ public class Commandnick extends EssentialsLoopCommand {
     }
 
     @Override
-    protected List<String> getTabCompleteOptions(final Server server, final User user, final String commandLabel, final String[] args) {
-        if (args.length == 1 && getTFMHandler().isStaff(user)) {
-            return getPlayers(server, user);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    @Override
     protected List<String> getTabCompleteOptions(final Server server, final CommandSource sender, final String commandLabel, final String[] args) {
-        if (args.length == 1) {
+        if (args.length == 1 && sender.isAuthorized("essentials.nick.others", ess)) {
             return getPlayers(server, sender);
         } else {
             return Collections.emptyList();
