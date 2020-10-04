@@ -1426,6 +1426,18 @@ public class OfflinePlayer implements Player {
     }
 
     @Override
+    public void setInvisible(boolean b)
+    {
+
+    }
+
+    @Override
+    public boolean isInvisible()
+    {
+        return false;
+    }
+
+    @Override
     public <T extends Projectile> T launchProjectile(Class<? extends T> type, Vector vector) {
         return null;
     }
