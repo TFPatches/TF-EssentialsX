@@ -39,15 +39,16 @@
             <id>jitpack</id>
             <url>https://jitpack.io</url>
         </repository>
-        <repository>
-            <id>telesphoreo-repo</id>
-            <url>https://telesphoreo.me/repo/maven</url>
-        </repository>
     </repositories>
 
     <modules>
         <module>Essentials</module>
+        <module>EssentialsAntiBuild</module>
+        <module>EssentialsChat</module>
+        <module>EssentialsGeoIP</module>
+        <module>EssentialsProtect</module>
         <module>EssentialsSpawn</module>
+        <module>EssentialsXMPP</module>
         <module>providers/BaseProviders</module>
         <module>providers/NMSReflectionProvider</module>
         <module>providers/PaperProvider</module>
@@ -72,12 +73,6 @@
             <artifactId>mockito-core</artifactId>
             <version>3.2.0</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>me.totalfreedom</groupId>
-            <artifactId>TotalFreedomMod</artifactId>
-            <version>2020.9</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -110,7 +105,32 @@
                         </artifactItem>
                         <artifactItem>
                             <groupId>${project.groupId}</groupId>
+                            <artifactId>EssentialsXAntiBuild</artifactId>
+                            <version>${project.version}</version>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>EssentialsXChat</artifactId>
+                            <version>${project.version}</version>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>EssentialsXGeoIP</artifactId>
+                            <version>${project.version}</version>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>EssentialsXProtect</artifactId>
+                            <version>${project.version}</version>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>${project.groupId}</groupId>
                             <artifactId>EssentialsXSpawn</artifactId>
+                            <version>${project.version}</version>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>EssentialsXXMPP</artifactId>
                             <version>${project.version}</version>
                         </artifactItem>
                     </artifactItems>
@@ -168,6 +188,7 @@
                             <value>${full.version}</value>
                         </replacement>
                         <replacement>
+                            <!--suppress UnresolvedMavenProperty -->
                             <token>$${build.number}</token>
                             <value>${full.version}</value>
                         </replacement>
@@ -231,7 +252,24 @@
                     </gitDescribe>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <configLocation>.checkstyle/checkstyle.xml</configLocation>
+                    <suppressionsLocation>.checkstyle/suppressions.xml</suppressionsLocation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+
         <resources>
             <resource>
                 <directory>src</directory>
@@ -254,6 +292,7 @@
         <release.version>2.18.1</release.version>
 
         <!-- The plugins' build number -->
+        <!--suppress UnresolvedMavenProperty -->
         <build.version>${git.closest.tag.commit.count}</build.version>
 
         <full.version>${release.version}.${build.version}</full.version>

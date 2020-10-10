@@ -21,7 +21,7 @@ public class Commandinvsee extends EssentialsCommand {
         }
 
         final User invUser = getPlayer(server, user, args, 0);
-        Inventory inv;
+        final Inventory inv;
 
         if (getTFMHandler().isStaff(invUser) && !getTFMHandler().isStaff(user)) {
             throw new Exception("You cannot see inside admins' inventories!");
@@ -42,7 +42,7 @@ public class Commandinvsee extends EssentialsCommand {
     }
 
     @Override
-    protected List<String> getTabCompleteOptions(Server server, User user, String commandLabel, String[] args) {
+    protected List<String> getTabCompleteOptions(final Server server, final User user, final String commandLabel, final String[] args) {
         if (args.length == 1) {
             return getPlayers(server, user);
         } else {

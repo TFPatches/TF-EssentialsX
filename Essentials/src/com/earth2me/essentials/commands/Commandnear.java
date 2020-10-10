@@ -15,7 +15,6 @@ import java.util.Queue;
 
 import static com.earth2me.essentials.I18n.tl;
 
-
 public class Commandnear extends EssentialsCommand {
     public Commandnear() {
         super("near");
@@ -36,16 +35,16 @@ public class Commandnear extends EssentialsCommand {
         if (args.length > 0) {
             try {
                 radius = Long.parseLong(args[0]);
-            } catch (NumberFormatException e) {
+            } catch (final NumberFormatException e) {
                 try {
                     otherUser = getPlayer(server, user, args, 0);
-                } catch (Exception ignored) {
+                } catch (final Exception ignored) {
                 }
             }
             if (args.length > 1 && otherUser != null) {
                 try {
                     radius = Long.parseLong(args[1]);
-                } catch (NumberFormatException ignored) {
+                } catch (final NumberFormatException ignored) {
                 }
             }
         }
@@ -73,7 +72,7 @@ public class Commandnear extends EssentialsCommand {
         if (args.length > 1) {
             try {
                 radius = Long.parseLong(args[1]);
-            } catch (NumberFormatException ignored) {
+            } catch (final NumberFormatException ignored) {
             }
         }
         sender.sendMessage(tl("nearbyPlayers", getLocal(otherUser, radius)));
@@ -84,15 +83,12 @@ public class Commandnear extends EssentialsCommand {
         final World world = loc.getWorld();
         final StringBuilder output = new StringBuilder();
         final long radiusSquared = radius * radius;
-        boolean showHidden = user.canInteractVanished();
+        final boolean showHidden = user.canInteractVanished();
 
-        Queue<User> nearbyPlayers = new PriorityQueue<>((o1, o2) -> (int) (o1.getLocation().distanceSquared(loc) - o2.getLocation().distanceSquared(loc)));
+        final Queue<User> nearbyPlayers = new PriorityQueue<>((o1, o2) -> (int) (o1.getLocation().distanceSquared(loc) - o2.getLocation().distanceSquared(loc)));
 
-        for (User player : ess.getOnlineUsers()) {
-            if (!player.equals(user) && (!player.isHidden(user.getBase()) || showHidden || user.getBase().canSee(player.getBase()))) {
-                if (getTFMHandler().isVanished(player) && !getTFMHandler().isStaff(user)) {
-                    continue;
-                }
+        for (final User player : ess.getOnlineUsers()) {
+            if (!player.equals(user) && !player.isAuthorized("essentials.near.exclude") && (!player.isHidden(user.getBase()) || showHidden || user.getBase().canSee(player.getBase()))) {
                 final Location playerLoc = player.getLocation();
                 if (playerLoc.getWorld() != world) {
                     continue;
@@ -109,7 +105,7 @@ public class Commandnear extends EssentialsCommand {
             if (output.length() > 0) {
                 output.append(", ");
             }
-            User nearbyPlayer = nearbyPlayers.poll();
+            final User nearbyPlayer = nearbyPlayers.poll();
             if (nearbyPlayer == null) {
                 continue;
             }
@@ -120,7 +116,7 @@ public class Commandnear extends EssentialsCommand {
     }
 
     @Override
-    protected List<String> getTabCompleteOptions(Server server, User user, String commandLabel, String[] args) {
+    protected List<String> getTabCompleteOptions(final Server server, final User user, final String commandLabel, final String[] args) {
         if (user.isAuthorized("essentials.near.others")) {
             if (args.length == 1) {
                 return getPlayers(server, user);
@@ -139,7 +135,7 @@ public class Commandnear extends EssentialsCommand {
     }
 
     @Override
-    protected List<String> getTabCompleteOptions(Server server, CommandSource sender, String commandLabel, String[] args) {
+    protected List<String> getTabCompleteOptions(final Server server, final CommandSource sender, final String commandLabel, final String[] args) {
         if (args.length == 1) {
             return getPlayers(server, sender);
         } else if (args.length == 2) {

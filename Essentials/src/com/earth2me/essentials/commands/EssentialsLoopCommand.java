@@ -13,35 +13,32 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
-
 public abstract class EssentialsLoopCommand extends EssentialsCommand {
-    public EssentialsLoopCommand(String command) {
+    public EssentialsLoopCommand(final String command) {
         super(command);
     }
 
-    protected void loopOfflinePlayers(final Server server, final CommandSource sender, final boolean multipleStringMatches, boolean matchWildcards, final String searchTerm, final String[] commandArgs) throws PlayerNotFoundException, NotEnoughArgumentsException, PlayerExemptException, ChargeException, MaxMoneyException {
+    protected void loopOfflinePlayers(final Server server, final CommandSource sender, final boolean multipleStringMatches, final boolean matchWildcards, final String searchTerm, final String[] commandArgs) throws PlayerNotFoundException, NotEnoughArgumentsException, PlayerExemptException, ChargeException, MaxMoneyException {
         loopOfflinePlayersConsumer(server, sender, multipleStringMatches, matchWildcards, searchTerm, user -> updatePlayer(server, sender, user, commandArgs));
     }
 
-    protected void loopOfflinePlayersConsumer(final Server server, final CommandSource sender, final boolean multipleStringMatches, boolean matchWildcards, final String searchTerm, UserConsumer userConsumer) throws PlayerNotFoundException, NotEnoughArgumentsException, PlayerExemptException, ChargeException, MaxMoneyException {
+    protected void loopOfflinePlayersConsumer(final Server server, final CommandSource sender, final boolean multipleStringMatches, final boolean matchWildcards, final String searchTerm, final UserConsumer userConsumer) throws PlayerNotFoundException, NotEnoughArgumentsException, PlayerExemptException, ChargeException, MaxMoneyException {
         if (searchTerm.isEmpty()) {
             throw new PlayerNotFoundException();
         }
-
-        matchWildcards = getTFMHandler().isStaff(sender.getPlayer());
 
         final UUID uuid = StringUtil.toUUID(searchTerm);
         if (uuid != null) {
             final User matchedUser = ess.getUser(uuid);
             userConsumer.accept(matchedUser);
         } else if (matchWildcards && searchTerm.contentEquals("**")) {
-            for (UUID sUser : ess.getUserMap().getAllUniqueUsers()) {
+            for (final UUID sUser : ess.getUserMap().getAllUniqueUsers()) {
                 final User matchedUser = ess.getUser(sUser);
                 userConsumer.accept(matchedUser);
             }
         } else if (matchWildcards && searchTerm.contentEquals("*")) {
-            boolean skipHidden = sender.isPlayer() && !ess.getUser(sender.getPlayer()).canInteractVanished();
-            for (User onlineUser : ess.getOnlineUsers()) {
+            final boolean skipHidden = sender.isPlayer() && !ess.getUser(sender.getPlayer()).canInteractVanished();
+            for (final User onlineUser : ess.getOnlineUsers()) {
                 if (skipHidden && onlineUser.isHidden(sender.getPlayer()) && !sender.getPlayer().canSee(onlineUser.getBase())) {
                     continue;
                 }
@@ -56,7 +53,7 @@ public abstract class EssentialsLoopCommand extends EssentialsCommand {
                 final User matchedUser = getPlayer(server, searchTerm, true, true);
                 userConsumer.accept(matchedUser);
             }
-            for (Player matchPlayer : matchedPlayers) {
+            for (final Player matchPlayer : matchedPlayers) {
                 final User matchedUser = ess.getUser(matchPlayer);
                 userConsumer.accept(matchedUser);
             }
@@ -66,20 +63,19 @@ public abstract class EssentialsLoopCommand extends EssentialsCommand {
         }
     }
 
-    protected void loopOnlinePlayers(final Server server, final CommandSource sender, final boolean multipleStringMatches, boolean matchWildcards, final String searchTerm, final String[] commandArgs) throws PlayerNotFoundException, NotEnoughArgumentsException, PlayerExemptException, ChargeException, MaxMoneyException {
+    protected void loopOnlinePlayers(final Server server, final CommandSource sender, final boolean multipleStringMatches, final boolean matchWildcards, final String searchTerm, final String[] commandArgs) throws PlayerNotFoundException, NotEnoughArgumentsException, PlayerExemptException, ChargeException, MaxMoneyException {
         loopOnlinePlayersConsumer(server, sender, multipleStringMatches, matchWildcards, searchTerm, user -> updatePlayer(server, sender, user, commandArgs));
     }
 
-    protected void loopOnlinePlayersConsumer(final Server server, final CommandSource sender, final boolean multipleStringMatches, boolean matchWildcards, final String searchTerm, UserConsumer userConsumer) throws PlayerNotFoundException, NotEnoughArgumentsException, PlayerExemptException, ChargeException, MaxMoneyException {
+    protected void loopOnlinePlayersConsumer(final Server server, final CommandSource sender, final boolean multipleStringMatches, final boolean matchWildcards, final String searchTerm, final UserConsumer userConsumer) throws PlayerNotFoundException, NotEnoughArgumentsException, PlayerExemptException, ChargeException, MaxMoneyException {
         if (searchTerm.isEmpty()) {
             throw new PlayerNotFoundException();
         }
 
-        matchWildcards = getTFMHandler().isStaff(sender.getPlayer());
-        boolean skipHidden = sender.isPlayer() && !ess.getUser(sender.getPlayer()).canInteractVanished();
+        final boolean skipHidden = sender.isPlayer() && !ess.getUser(sender.getPlayer()).canInteractVanished();
 
         if (matchWildcards && (searchTerm.contentEquals("**") || searchTerm.contentEquals("*"))) {
-            for (User onlineUser : ess.getOnlineUsers()) {
+            for (final User onlineUser : ess.getOnlineUsers()) {
                 if (skipHidden && onlineUser.isHidden(sender.getPlayer()) && !sender.getPlayer().canSee(onlineUser.getBase())) {
                     continue;
                 }
@@ -94,7 +90,7 @@ public abstract class EssentialsLoopCommand extends EssentialsCommand {
 
             if (matchedPlayers.isEmpty()) {
                 final String matchText = searchTerm.toLowerCase(Locale.ENGLISH);
-                for (User player : ess.getOnlineUsers()) {
+                for (final User player : ess.getOnlineUsers()) {
                     if (skipHidden && player.isHidden(sender.getPlayer()) && !sender.getPlayer().canSee(player.getBase())) {
                         continue;
                     }
@@ -105,7 +101,7 @@ public abstract class EssentialsLoopCommand extends EssentialsCommand {
                     }
                 }
             } else {
-                for (Player matchPlayer : matchedPlayers) {
+                for (final Player matchPlayer : matchedPlayers) {
                     final User player = ess.getUser(matchPlayer);
                     if (skipHidden && player.isHidden(sender.getPlayer()) && !sender.getPlayer().canSee(matchPlayer)) {
                         continue;
@@ -127,7 +123,7 @@ public abstract class EssentialsLoopCommand extends EssentialsCommand {
 
     @Override
     protected List<String> getPlayers(final Server server, final CommandSource interactor) {
-        List<String> players = super.getPlayers(server, interactor);
+        final List<String> players = super.getPlayers(server, interactor);
         players.add("**");
         players.add("*");
         return players;
@@ -135,7 +131,7 @@ public abstract class EssentialsLoopCommand extends EssentialsCommand {
 
     @Override
     protected List<String> getPlayers(final Server server, final User interactor) {
-        List<String> players = super.getPlayers(server, interactor);
+        final List<String> players = super.getPlayers(server, interactor);
         players.add("**");
         players.add("*");
         return players;
