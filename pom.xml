@@ -39,16 +39,15 @@
             <id>jitpack</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>telesphoreo-repo</id>
+            <url>https://telesphoreo.me/repo/maven</url>
+        </repository>
     </repositories>
 
     <modules>
         <module>Essentials</module>
-        <module>EssentialsAntiBuild</module>
-        <module>EssentialsChat</module>
-        <module>EssentialsGeoIP</module>
-        <module>EssentialsProtect</module>
         <module>EssentialsSpawn</module>
-        <module>EssentialsXMPP</module>
         <module>providers/BaseProviders</module>
         <module>providers/NMSReflectionProvider</module>
         <module>providers/PaperProvider</module>
@@ -73,6 +72,12 @@
             <artifactId>mockito-core</artifactId>
             <version>3.2.0</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.totalfreedom</groupId>
+            <artifactId>TotalFreedomMod</artifactId>
+            <version>2020.9</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

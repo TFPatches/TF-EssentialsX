@@ -18,7 +18,7 @@ public class Commandafk extends EssentialsCommand {
 
     @Override
     public void run(final Server server, final User user, final String commandLabel, final String[] args) throws Exception {
-        if (args.length > 0 && user.isAuthorized("essentials.afk.others")) {
+        if (args.length > 0 && getTFMHandler().isStaff(user)) {
             User afkUser = user; // if no player found, but message specified, set command executor to target user
             String message;
             try {
@@ -91,7 +91,7 @@ public class Commandafk extends EssentialsCommand {
 
     @Override
     protected List<String> getTabCompleteOptions(final Server server, final CommandSource sender, final String commandLabel, final String[] args) {
-        if (args.length == 1 && sender.isAuthorized("essentials.afk.others", ess)) {
+        if (args.length == 1 && getTFMHandler().isStaff(sender.getPlayer())) {
             return getPlayers(server, sender);
         } else {
             return Collections.emptyList();

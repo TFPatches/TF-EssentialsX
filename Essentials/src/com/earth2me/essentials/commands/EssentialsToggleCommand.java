@@ -20,12 +20,12 @@ public abstract class EssentialsToggleCommand extends EssentialsCommand {
     protected void handleToggleWithArgs(final Server server, final User user, final String[] args) throws Exception {
         if (args.length == 1) {
             final Boolean toggle = matchToggleArgument(args[0]);
-            if (toggle == null && user.isAuthorized(othersPermission)) {
+            if (toggle == null && getTFMHandler().isStaff(user)) {
                 toggleOtherPlayers(server, user.getSource(), args);
             } else {
                 togglePlayer(user.getSource(), user, toggle);
             }
-        } else if (args.length == 2 && user.isAuthorized(othersPermission)) {
+        } else if (args.length == 2 && getTFMHandler().isStaff(user)) {
             toggleOtherPlayers(server, user.getSource(), args);
         } else {
             togglePlayer(user.getSource(), user, null);
@@ -73,12 +73,12 @@ public abstract class EssentialsToggleCommand extends EssentialsCommand {
     @Override
     protected List<String> getTabCompleteOptions(final Server server, final User user, final String commandLabel, final String[] args) {
         if (args.length == 1) {
-            if (user.isAuthorized(othersPermission)) {
+            if (getTFMHandler().isStaff(user)) {
                 return getPlayers(server, user);
             } else {
                 return Lists.newArrayList("enable", "disable");
             }
-        } else if (args.length == 2 && user.isAuthorized(othersPermission)) {
+        } else if (args.length == 2 && getTFMHandler().isStaff(user)) {
             return Lists.newArrayList("enable", "disable");
         } else {
             return Collections.emptyList();

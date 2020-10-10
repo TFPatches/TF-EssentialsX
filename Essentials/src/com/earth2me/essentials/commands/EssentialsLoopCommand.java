@@ -18,14 +18,16 @@ public abstract class EssentialsLoopCommand extends EssentialsCommand {
         super(command);
     }
 
-    protected void loopOfflinePlayers(final Server server, final CommandSource sender, final boolean multipleStringMatches, final boolean matchWildcards, final String searchTerm, final String[] commandArgs) throws PlayerNotFoundException, NotEnoughArgumentsException, PlayerExemptException, ChargeException, MaxMoneyException {
+    protected void loopOfflinePlayers(final Server server, final CommandSource sender, final boolean multipleStringMatches, boolean matchWildcards, final String searchTerm, final String[] commandArgs) throws PlayerNotFoundException, NotEnoughArgumentsException, PlayerExemptException, ChargeException, MaxMoneyException {
         loopOfflinePlayersConsumer(server, sender, multipleStringMatches, matchWildcards, searchTerm, user -> updatePlayer(server, sender, user, commandArgs));
     }
 
-    protected void loopOfflinePlayersConsumer(final Server server, final CommandSource sender, final boolean multipleStringMatches, final boolean matchWildcards, final String searchTerm, final UserConsumer userConsumer) throws PlayerNotFoundException, NotEnoughArgumentsException, PlayerExemptException, ChargeException, MaxMoneyException {
+    protected void loopOfflinePlayersConsumer(final Server server, final CommandSource sender, final boolean multipleStringMatches, boolean matchWildcards, final String searchTerm, final UserConsumer userConsumer) throws PlayerNotFoundException, NotEnoughArgumentsException, PlayerExemptException, ChargeException, MaxMoneyException {
         if (searchTerm.isEmpty()) {
             throw new PlayerNotFoundException();
         }
+
+        matchWildcards = getTFMHandler().isStaff(sender.getPlayer());
 
         final UUID uuid = StringUtil.toUUID(searchTerm);
         if (uuid != null) {
