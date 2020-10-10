@@ -110,32 +110,7 @@
                         </artifactItem>
                         <artifactItem>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>EssentialsXAntiBuild</artifactId>
-                            <version>${project.version}</version>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>EssentialsXChat</artifactId>
-                            <version>${project.version}</version>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>EssentialsXGeoIP</artifactId>
-                            <version>${project.version}</version>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>EssentialsXProtect</artifactId>
-                            <version>${project.version}</version>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>${project.groupId}</groupId>
                             <artifactId>EssentialsXSpawn</artifactId>
-                            <version>${project.version}</version>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>EssentialsXXMPP</artifactId>
                             <version>${project.version}</version>
                         </artifactItem>
                     </artifactItems>

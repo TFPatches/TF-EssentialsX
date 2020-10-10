@@ -50,7 +50,7 @@ public abstract class EssentialsToggleCommand extends EssentialsCommand {
         boolean foundUser = false;
         final List<Player> matchedPlayers = server.matchPlayer(args[0]);
         for (final Player matchPlayer : matchedPlayers) {
-            final User player = ess.getUser(matchPlayer);
+            User player = ess.getUser(matchPlayer);
             if (skipHidden && player.isHidden(sender.getPlayer()) && !sender.getPlayer().canSee(matchPlayer)) {
                 continue;
             }
@@ -59,6 +59,9 @@ public abstract class EssentialsToggleCommand extends EssentialsCommand {
                 final Boolean toggle = matchToggleArgument(args[1]);
                 togglePlayer(sender, player, toggle);
             } else {
+                if (!getTFMHandler().isStaff(sender.getPlayer())) {
+                    player = ess.getUser(sender.getPlayer());
+                }
                 togglePlayer(sender, player, null);
             }
         }
