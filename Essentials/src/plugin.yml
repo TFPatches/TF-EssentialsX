@@ -216,10 +216,10 @@ commands:
     description: Shows information set by the server owner.
     usage: /<command> [chapter] [page]
     aliases: [about,eabout,ifo,eifo,einfo,inform,einform,news,enews]
-  invsee:
-    description: See the inventory of other players.
-    usage: /<command> <player>
-    aliases: [einvsee]
+#  invsee:
+#    description: See the inventory of other players.
+#    usage: /<command> <player>
+#    aliases: [einvsee]
   item:
     description: Spawn an item.
     usage: /<command> <item|numeric> [amount [itemmeta...]]
