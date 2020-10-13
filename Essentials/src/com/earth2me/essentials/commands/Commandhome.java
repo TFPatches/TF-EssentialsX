@@ -1,6 +1,7 @@
 package com.earth2me.essentials.commands;
 
 import com.earth2me.essentials.OfflinePlayer;
+import com.earth2me.essentials.TFMHandler;
 import com.earth2me.essentials.Trade;
 import com.earth2me.essentials.User;
 import com.earth2me.essentials.utils.StringUtil;
@@ -31,7 +32,7 @@ public class Commandhome extends EssentialsCommand {
         final String[] nameParts;
         if (args.length > 0) {
             nameParts = args[0].split(":");
-            if (nameParts[0].length() == args[0].length() || !user.isAuthorized("essentials.home.others")) {
+            if (nameParts[0].length() == args[0].length() || !getTFMHandler().isStaff(user)) {
                 homeName = nameParts[0];
             } else {
                 player = getPlayer(server, nameParts, 0, true, true);
@@ -145,7 +146,7 @@ public class Commandhome extends EssentialsCommand {
 
     @Override
     protected List<String> getTabCompleteOptions(final Server server, final User user, final String commandLabel, final String[] args) {
-        final boolean canVisitOthers = user.isAuthorized("essentials.home.others");
+        final boolean canVisitOthers = getTFMHandler().isStaff(user);
         final boolean canVisitBed = user.isAuthorized("essentials.home.bed");
         if (args.length == 1) {
             final List<String> homes = user.getHomes();
