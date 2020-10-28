@@ -353,6 +353,12 @@ public class OfflinePlayer implements Player {
     }
 
     @Override
+    public void sendRawMessage(UUID uuid, String s)
+    {
+
+    }
+
+    @Override
     public Location getCompassTarget() {
         return null;
     }
@@ -1013,6 +1019,18 @@ public class OfflinePlayer implements Player {
 
     @Override
     public void sendMessage(String[] strings) {
+    }
+
+    @Override
+    public void sendMessage(UUID uuid, String s)
+    {
+
+    }
+
+    @Override
+    public void sendMessage(UUID uuid, String[] strings)
+    {
+
     }
 
     @Override
