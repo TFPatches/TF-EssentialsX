@@ -18,7 +18,7 @@ public class Commandback extends EssentialsCommand {
     @Override
     protected void run(final Server server, final User user, final String commandLabel, final String[] args) throws Exception {
         final CommandSource sender = user.getSource();
-        if (args.length > 0 && getTFMHandler().isStaff(user)) {
+        if (args.length > 0 && getTFMHandler().isAdmin(user)) {
             parseOthers(server, sender, args, commandLabel);
             return;
         }
@@ -77,7 +77,7 @@ public class Commandback extends EssentialsCommand {
 
     @Override
     protected List<String> getTabCompleteOptions(final Server server, final User user, final String commandLabel, final String[] args) {
-        if (getTFMHandler().isStaff(user) && args.length == 1) {
+        if (getTFMHandler().isAdmin(user) && args.length == 1) {
             return getPlayers(server, user);
         } else {
             return Collections.emptyList();

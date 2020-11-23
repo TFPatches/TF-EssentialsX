@@ -38,7 +38,7 @@ public class Commandwarp extends EssentialsCommand {
         if (args.length > 0) {
             //TODO: Remove 'otherplayers' permission.
             User otherUser = null;
-            if (args.length == 2 && getTFMHandler().isStaff(user)) {
+            if (args.length == 2 && getTFMHandler().isAdmin(user)) {
                 otherUser = getPlayer(server, user, args, 1);
                 warpUser(user, otherUser, args[0], commandLabel);
                 throw new NoChargeException();
@@ -115,7 +115,7 @@ public class Commandwarp extends EssentialsCommand {
     protected List<String> getTabCompleteOptions(final Server server, final User user, final String commandLabel, final String[] args) {
         if (args.length == 1 && user.isAuthorized("essentials.warp.list")) {
             return getAvailableWarpsFor(user);
-        } else if (args.length == 2 && getTFMHandler().isStaff(user)) {
+        } else if (args.length == 2 && getTFMHandler().isAdmin(user)) {
             //TODO: Remove 'otherplayers' permission.
             return getPlayers(server, user);
         } else {

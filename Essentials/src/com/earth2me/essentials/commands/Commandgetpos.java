@@ -35,7 +35,7 @@ public class Commandgetpos extends EssentialsCommand {
     }
 
     private void outputPosition(final CommandSource sender, final User user, final Location coords, final Location distance) {
-        if (!sender.isPlayer()|| getTFMHandler().isStaff(sender.getPlayer()) || user.getSource() == sender) {
+        if (!sender.isPlayer()|| getTFMHandler().isAdmin(sender.getPlayer()) || user.getSource() == sender) {
             sender.sendMessage(tl("posX", coords.getBlockX()));
             sender.sendMessage(tl("posY", coords.getBlockY()));
             sender.sendMessage(tl("posZ", coords.getBlockZ()));

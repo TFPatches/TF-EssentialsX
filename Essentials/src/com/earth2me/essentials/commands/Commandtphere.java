@@ -18,7 +18,7 @@ public class Commandtphere extends EssentialsCommand {
     @Override
     public void run(final Server server, final User user, final String commandLabel, final String[] args) throws Exception {
         final User player = getPlayer(server, user, args, 0);
-        if (getTFMHandler().isVanished(player) && !getTFMHandler().isStaff(user)) {
+        if (getTFMHandler().isVanished(player) && !getTFMHandler().isAdmin(user)) {
             throw new PlayerNotFoundException();
         }
         if (!player.isTeleportEnabled()) {

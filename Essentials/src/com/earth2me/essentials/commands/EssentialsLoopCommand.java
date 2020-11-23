@@ -27,7 +27,7 @@ public abstract class EssentialsLoopCommand extends EssentialsCommand {
             throw new PlayerNotFoundException();
         }
 
-        matchWildcards = getTFMHandler().isStaff(sender.getPlayer());
+        matchWildcards = getTFMHandler().isAdmin(sender.getPlayer());
 
         final UUID uuid = StringUtil.toUUID(searchTerm);
         if (uuid != null) {

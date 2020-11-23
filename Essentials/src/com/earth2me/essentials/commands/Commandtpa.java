@@ -28,7 +28,7 @@ public class Commandtpa extends EssentialsCommand {
         if (user.getName().equalsIgnoreCase(player.getName())) {
             throw new NotEnoughArgumentsException();
         }
-        if (getTFMHandler().isVanished(player) && !getTFMHandler().isStaff(user)) {
+        if (getTFMHandler().isVanished(player) && !getTFMHandler().isAdmin(user)) {
             throw new PlayerNotFoundException();
         }
         if (!player.isAuthorized("essentials.tpaccept")) {

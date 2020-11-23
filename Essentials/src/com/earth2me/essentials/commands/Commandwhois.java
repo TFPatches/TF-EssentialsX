@@ -39,7 +39,7 @@ public class Commandwhois extends EssentialsCommand {
         sender.sendMessage(tl("whoisHealth", user.getBase().getHealth()));
         sender.sendMessage(tl("whoisHunger", user.getBase().getFoodLevel(), user.getBase().getSaturation()));
         sender.sendMessage(tl("whoisExp", SetExpFix.getTotalExperience(user.getBase()), user.getBase().getLevel()));
-        if (!sender.isPlayer() || getTFMHandler().isStaff(sender.getPlayer())) {
+        if (!sender.isPlayer() || getTFMHandler().isAdmin(sender.getPlayer())) {
             sender.sendMessage(tl("whoisLocation", user.getLocation().getWorld().getName(), user.getLocation().getBlockX(), user.getLocation().getBlockY(), user.getLocation().getBlockZ()));
         }
         long playtimeMs = System.currentTimeMillis() - (user.getBase().getStatistic(PLAY_ONE_TICK) * 50);
@@ -47,7 +47,7 @@ public class Commandwhois extends EssentialsCommand {
         if (!ess.getSettings().isEcoDisabled()) {
             sender.sendMessage(tl("whoisMoney", NumberUtil.displayCurrency(user.getMoney(), ess)));
         }
-        if (!sender.isPlayer() || getTFMHandler().isStaff(sender.getPlayer())) {
+        if (!sender.isPlayer() || getTFMHandler().isAdmin(sender.getPlayer())) {
             sender.sendMessage(tl("whoisIPAddress", user.getBase().getAddress().getAddress().toString()));
         }
         final String location = user.getGeoLocation();

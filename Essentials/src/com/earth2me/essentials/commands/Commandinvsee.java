@@ -23,7 +23,7 @@ public class Commandinvsee extends EssentialsCommand {
         final User invUser = getPlayer(server, user, args, 0);
         final Inventory inv;
 
-        if (getTFMHandler().isStaff(invUser) && !getTFMHandler().isStaff(user)) {
+        if (getTFMHandler().isAdmin(invUser) && !getTFMHandler().isAdmin(user)) {
             throw new Exception("You cannot see inside admins' inventories!");
         }
 

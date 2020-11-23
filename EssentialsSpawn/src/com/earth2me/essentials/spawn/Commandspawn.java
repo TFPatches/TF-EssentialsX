@@ -26,7 +26,7 @@ public class Commandspawn extends EssentialsCommand {
     public void run(final Server server, final User user, final String commandLabel, final String[] args) throws Exception {
         final Trade charge = new Trade(this.getName(), ess);
         charge.isAffordableFor(user);
-        if (args.length > 0 && getTFMHandler().isStaff(user)) {
+        if (args.length > 0 && getTFMHandler().isAdmin(user)) {
             final User otherUser = getPlayer(server, user, args, 0);
             final CompletableFuture<Boolean> future = new CompletableFuture<>();
             future.thenAccept(success -> {

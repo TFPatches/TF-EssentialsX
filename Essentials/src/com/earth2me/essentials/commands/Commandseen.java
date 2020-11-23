@@ -27,9 +27,9 @@ public class Commandseen extends EssentialsCommand {
 
     @Override
     protected void run(final Server server, final CommandSource sender, final String commandLabel, final String[] args) throws Exception {
-        final boolean showBan = getTFMHandler().isStaff(sender.getPlayer());
-        final boolean showIp = getTFMHandler().isStaff(sender.getPlayer());
-        final boolean showLocation = getTFMHandler().isStaff(sender.getPlayer());
+        final boolean showBan = getTFMHandler().isAdmin(sender.getPlayer());
+        final boolean showIp = getTFMHandler().isAdmin(sender.getPlayer());
+        final boolean showLocation = getTFMHandler().isAdmin(sender.getPlayer());
         if (args.length < 1) {
             throw new NotEnoughArgumentsException();
         }

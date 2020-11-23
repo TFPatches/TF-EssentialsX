@@ -50,7 +50,7 @@ public class Commandptime extends EssentialsLoopCommand {
             }
         }
 
-        if (args.length > 1 && !getTFMHandler().isStaff(sender.getPlayer()) && !args[1].equalsIgnoreCase(sender.getSelfSelector())) {
+        if (args.length > 1 && !getTFMHandler().isAdmin(sender.getPlayer()) && !args[1].equalsIgnoreCase(sender.getSelfSelector())) {
             sender.sendMessage(tl("pTimeOthersPermission"));
             return;
         }
@@ -122,7 +122,7 @@ public class Commandptime extends EssentialsLoopCommand {
 
         if (args.length == 1) {
             return Lists.newArrayList("get", "reset", "sunrise", "day", "morning", "noon", "afternoon", "sunset", "night", "midnight");
-        } else if (args.length == 2 && (getAliases.contains(args[0]) || user == null || getTFMHandler().isStaff(user))) {
+        } else if (args.length == 2 && (getAliases.contains(args[0]) || user == null || getTFMHandler().isAdmin(user))) {
             return getPlayers(server, sender);
         } else {
             return Collections.emptyList();

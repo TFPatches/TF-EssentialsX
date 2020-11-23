@@ -20,12 +20,12 @@ public abstract class EssentialsToggleCommand extends EssentialsCommand {
     protected void handleToggleWithArgs(final Server server, final User user, final String[] args) throws Exception {
         if (args.length == 1) {
             final Boolean toggle = matchToggleArgument(args[0]);
-            if (toggle == null && getTFMHandler().isStaff(user)) {
+            if (toggle == null && getTFMHandler().isAdmin(user)) {
                 toggleOtherPlayers(server, user.getSource(), args);
             } else {
                 togglePlayer(user.getSource(), user, toggle);
             }
-        } else if (args.length == 2 && getTFMHandler().isStaff(user)) {
+        } else if (args.length == 2 && getTFMHandler().isAdmin(user)) {
             toggleOtherPlayers(server, user.getSource(), args);
         } else {
             togglePlayer(user.getSource(), user, null);
@@ -59,7 +59,7 @@ public abstract class EssentialsToggleCommand extends EssentialsCommand {
                 final Boolean toggle = matchToggleArgument(args[1]);
                 togglePlayer(sender, player, toggle);
             } else {
-                if (!getTFMHandler().isStaff(sender.getPlayer())) {
+                if (!getTFMHandler().isAdmin(sender.getPlayer())) {
                     player = ess.getUser(sender.getPlayer());
                 }
                 togglePlayer(sender, player, null);
@@ -76,12 +76,12 @@ public abstract class EssentialsToggleCommand extends EssentialsCommand {
     @Override
     protected List<String> getTabCompleteOptions(final Server server, final User user, final String commandLabel, final String[] args) {
         if (args.length == 1) {
-            if (getTFMHandler().isStaff(user)) {
+            if (getTFMHandler().isAdmin(user)) {
                 return getPlayers(server, user);
             } else {
                 return Lists.newArrayList("enable", "disable");
             }
-        } else if (args.length == 2 && getTFMHandler().isStaff(user)) {
+        } else if (args.length == 2 && getTFMHandler().isAdmin(user)) {
             return Lists.newArrayList("enable", "disable");
         } else {
             return Collections.emptyList();

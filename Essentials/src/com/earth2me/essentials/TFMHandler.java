@@ -1,7 +1,7 @@
 package com.earth2me.essentials;
 
 import me.totalfreedom.totalfreedommod.TotalFreedomMod;
-import me.totalfreedom.totalfreedommod.staff.StaffList;
+import me.totalfreedom.totalfreedommod.admin.AdminList;
 import me.totalfreedom.totalfreedommod.util.FLog;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -38,19 +38,19 @@ public class TFMHandler
         return tfmPlugin;
     }
 
-    public boolean isStaff(User user)
+    public boolean isAdmin(User user)
     {
-        return getTFM().sl.isStaff(user.getBase());
+        return getTFM().al.isAdmin(user.getBase());
     }
 
-    public boolean isStaff(CommandSender sender)
+    public boolean isAdmin(CommandSender sender)
     {
-        return getTFM().sl.isStaff(sender);
+        return getTFM().al.isAdmin(sender);
     }
 
-    public boolean isStaff(Player player)
+    public boolean isAdmin(Player player)
     {
-        return getTFM().sl.isStaff(player);
+        return getTFM().al.isAdmin(player);
     }
 
     public boolean isVanished(User user)
@@ -64,7 +64,7 @@ public class TFMHandler
         {
             getTFM();
         }
-        return StaffList.vanished.contains(player.getName());
+        return AdminList.vanished.contains(player.getName());
     }
 
     public void warning(String warning)
