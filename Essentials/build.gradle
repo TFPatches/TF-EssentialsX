@@ -3,6 +3,10 @@ dependencies {
         exclude group: "org.bukkit", module: "bukkit"
     }
     compileOnly 'net.luckperms:api:5.0'
+    compileOnly('me.totalfreedom:TotalFreedomMod:6.0') {
+        exclude group: "org.bstats", module: "bstats-bukkit"
+        exclude group: "me.rayzr522", module: "jsonmessage"
+    }
 
     api 'io.papermc:paperlib:1.0.6'
 
